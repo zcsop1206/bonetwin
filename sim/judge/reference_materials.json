@@ -1,0 +1,63 @@
+{
+ "note": "EVAL_SPEC_v1.md \u00a75 reference table; sources S1-S8 there. 'assumed' = not sourced.",
+ "materials": {
+  "rigid10k": {
+   "E_from_calibration": "rigid10k",
+   "nu": 0.35,
+   "nu_source": "assumed",
+   "strength": 65.0,
+   "strength_source": "[S1] Formlabs Rigid 10K TDS Rev01 2020, UTS UV post-cured, ASTM D638-14",
+   "E_datasheet": 11000.0,
+   "E_datasheet_source": "[S9] Formlabs Rigid 10K page tech specs (Form 3, Form Cure 60 min 70 C)"
+  },
+  "tough1500": {
+   "E_from_calibration": "tough1500",
+   "nu": 0.35,
+   "nu_source": "assumed",
+   "strength": 34.0,
+   "strength_source": "[S2] Formlabs Tough 1500 V2 product page, UTS post-cured",
+   "E_datasheet": 1460.0,
+   "E_datasheet_source": "[S2] Formlabs Tough 1500 V2 page tech specs (Form Cure V2 12 min 70 C)"
+  },
+  "peek450g": {
+   "E": 4000.0,
+   "E_source": "[S3] Victrex PEEK 450G datasheet, ISO 527-1, 23 C",
+   "nu": 0.4,
+   "nu_source": "[S4] Goodfellow 450G listing",
+   "strength": 98.0,
+   "strength_source": "[S3] tensile stress at yield, ISO 527-2"
+  },
+  "ti6al4v": {
+   "E": 113800.0,
+   "E_source": "[S5] ASM Aerospace Specification Metals, Grade 5 annealed",
+   "nu": 0.342,
+   "nu_source": "[S5]",
+   "strength": 880.0,
+   "strength_source": "[S5] tensile yield"
+  },
+  "cortical_bone": {
+   "E": 17900.0,
+   "E_source": "targets.json cortical_reference (Morgan 2018 Table 1), longitudinal; isotropic approximation",
+   "nu": 0.3,
+   "nu_source": "assumed",
+   "strength": 130.0,
+   "strength_source": "assumed"
+  },
+  "trabecular_bone_iso": {
+   "E": 384.8,
+   "E_source": "mean axial modulus of targets.json lumbar_vertebra (204/236.4/714), isotropic approximation (validation only)",
+   "nu": 0.3,
+   "nu_source": "assumed",
+   "strength": 2.0,
+   "strength_source": "assumed"
+  },
+  "bone_equivalent": {
+   "bone_equivalent": true,
+   "E": 384.8,
+   "nu": 0.3,
+   "E_source": "validation only: implant voxels get the lumbar bone stiffness matrix itself",
+   "strength": 2.0,
+   "strength_source": "assumed"
+  }
+ }
+}

@@ -1,0 +1,69 @@
+{
+  "total_credit": 150.0,
+  "reserve": 10.0,
+  "runs": {
+    "control-r1": 0.0,
+    "control-r2": 0.0,
+    "single-r1": 17.5,
+    "single-r2": 17.5,
+    "bestofn-r1": 17.5,
+    "bestofn-r2": 17.5,
+    "collective-r1": 17.5,
+    "collective-r2": 17.5,
+    "planner-r1": 17.5,
+    "planner-r2": 17.5,
+    "imgtest": 1.0
+  },
+  "max_concurrent_per_run": 1,
+  "default_hours": 1.0,
+  "allowed_types": {
+    "A6000": [
+      "massedcompute_A6000_base",
+      "massedcompute_A6000",
+      "massedcompute_A6000_plus",
+      "hyperstack_A6000"
+    ],
+    "A100": [
+      "a100-80gb.1x",
+      "massedcompute_A100_sxm4_80G",
+      "denvr_A100_sxm4_80G"
+    ],
+    "L40S": [
+      "l40s-48gb.1x",
+      "gpu-l40s-a.1gpu-8vcpu-32gb",
+      "massedcompute_L40S"
+    ]
+  },
+  "fallback_rates": {
+    "hyperstack_A6000": 0.6,
+    "massedcompute_A6000_base": 0.684,
+    "massedcompute_A6000": 0.684,
+    "massedcompute_A6000_plus": 0.684,
+    "massedcompute_A100_sxm4_80G": 1.656,
+    "massedcompute_A100_sxm4_80G_DGX": 1.656,
+    "denvr_A100_sxm4_80G": 1.8,
+    "massedcompute_L40S": 1.056,
+    "l40s-48gb.1x": 1.74,
+    "gpu-l40s-a.1gpu-8vcpu-32gb": 1.85808,
+    "a100-80gb.1x": 1.98
+  },
+  "idle_util_pct": 5,
+  "idle_minutes": 15,
+  "boot_grace_minutes": 25,
+  "reaper_interval_s": 120,
+  "hard_stop_local": "2099-01-01T00:00",
+  "hard_stop_note": "set to your own curfew, local wall time",
+  "brev": "/home/<wsl-user>/.local/bin/brev",
+  "wsl_distro": "Ubuntu-22.04",
+  "note_A6000_order": "hyperstack_A6000 ($0.60) is last: on Nov 1 00:09 it sat DEPLOYING/NOT READY for 20 min and was deleted unbooted. massedcompute ($0.684) is untested.",
+  "pools": {
+    "judge": {
+      "cap": 25.0,
+      "max_concurrent_per_run": 1,
+      "note": "runs named judge_<word> (or judge-<word>) share one $25 pool (raised from $10 by the evaluator at the user's request, about 07:25 EST Nov 1), outside the arms' caps; <word> is letters/digits only"
+    }
+  },
+  "note_reliability": "Nov 1 01:19: crusoe l40s-48gb.1x gave a working shell 72 s after start. shadeform-brokered hyperstack/massedcompute A6000s gave no SSH in 20 and 11 min. Crusoe types are first in L40S and A100 chains.",
+  "ngc_key_file": "",
+  "_template_note": "Copy to caps.json. Keep key files outside the repo; BT_NGC_KEY_FILE or ngc_key_file points at one. Rates and caps are the hackathon's."
+}

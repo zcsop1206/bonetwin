@@ -1,0 +1,26 @@
+{
+  "_comment": "ENTIRELY MADE-UP numbers for testing results_plot.py. Arm names are deliberately not the real arms.",
+  "template": true,
+  "title": "Results by arm: made-up test data",
+  "footnote": "All values invented to test the plot.",
+  "metric": {"name": "score", "lower_is_better": true},
+  "goal_metric": {"name": "goal metric", "lower_is_better": true},
+  "gates": ["G1", "G2", "G3", "G4"],
+  "arms": [
+    {"arm": "Arm A", "designs": [
+      {"id": "a1", "fused": {"value": 0.30, "lo": 0.26, "hi": 0.34}, "graft": {"value": 0.22, "lo": 0.19, "hi": 0.25}, "goal": {"value": 1.3, "lo": 1.1, "hi": 1.5}, "gates": {"G1": true, "G2": true, "G3": true, "G4": true}},
+      {"id": "a2", "submitted": false}
+    ]},
+    {"arm": "Arm B", "designs": [
+      {"id": "b1", "fused": {"value": 0.33, "lo": 0.31, "hi": 0.36}, "graft": {"value": 0.40, "lo": 0.37, "hi": 0.43}, "goal": {"value": 2.1, "lo": 1.9, "hi": 2.3}, "gates": {"G1": true, "G2": false, "G3": true}},
+      {"id": "b2", "fused": {"value": 0.55, "lo": 0.52, "hi": 0.58}, "goal": {"value": 2.2, "lo": 2.05, "hi": 2.4}, "gates": {"G1": true, "G2": true, "G3": true, "G4": true}}
+    ]},
+    {"arm": "Arm C", "designs": [
+      {"id": "c1", "fused": {"value": 0.70, "lo": 0.65, "hi": 0.75}, "graft": {"value": 0.24, "lo": 0.21, "hi": 0.27}, "goal": {"value": 0.8, "lo": 0.7, "hi": 0.9}, "gates": {"G1": true, "G2": true, "G3": true, "G4": true}},
+      {"id": "c2", "fused": {"value": 0.73, "lo": 0.68, "hi": 0.79}, "graft": {"value": 0.60, "lo": 0.56, "hi": 0.64}, "goal": {"value": 3.1, "lo": 2.9, "hi": 3.3}, "gates": {"G1": false, "G2": true, "G3": true, "G4": false}}
+    ]},
+    {"arm": "Arm D", "designs": [
+      {"id": "d1", "submitted": false}
+    ]}
+  ]
+}

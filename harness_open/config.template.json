@@ -1,0 +1,442 @@
+{
+  "seed": 20261101,
+  "n_agents": 6,
+  "b": 420000,
+  "replicates": 2,
+  "safety_cap": "07:00",
+  "max_sessions": 40,
+  "max_resumes": 3,
+  "claude_model": "claude-opus-5-5",
+  "first_turn_overhead_exempt": true,
+  "force_model": "claude",
+  "force_model_reason": "All agents ran on one Claude model by decision; set force_model to \"\" only after porting another model loop.",
+  "gateway": {
+    "real_dir": "../sim",
+    "mock_dir": "sim_mock",
+    "score_script": "score_design.py",
+    "control_script": "control_design.py",
+    "export_script": "export_stl.py",
+    "schema_file": "design_schema.json",
+    "key_file": "",
+    "key_env_note": "key_file: path (relative to bonetwin/) of the gateway's HMAC key. Empty = <gateway dir>/.gateway_key. Only harness code reads it; agents are blocked from it.",
+    "verify_cmd": "",
+    "seal_fidelity": "frame",
+    "seal_extra_args": [],
+    "timeout_s": 2400,
+    "dim": 3,
+    "dim_fallback": 2,
+    "score_better": "lower",
+    "score_note": "real gateway: score = RMS over visible cases of the case error (lower is better); constraints.all_pass; --sealed (needs BT_GATEWAY_ADMIN=1, voxel/planestress only) adds result.sealed.score for the hidden 4th case",
+    "agent_fidelities": [
+      "frame",
+      "planestress"
+    ],
+    "postscore": {
+      "fidelity": "planestress",
+      "args_final": [
+        "--final",
+        "--sealed"
+      ],
+      "args_nofinal": [
+        "--sealed",
+        "--voxel-h",
+        "0.1"
+      ],
+      "local_args": [
+        "--solver",
+        "splu"
+      ],
+      "remote_cmd": "",
+      "auto_after_run": false,
+      "final_flag_go": false,
+      "note": "PRE-REGISTERED (2-D, user decision 19:40): the final arm score is the plane-stress FE at h = 0.1 (score_design.py --dim 2 --fidelity planestress --final), once per arm design after all arms seal, one at a time; also scores the hidden case (--sealed) and D. --final is passed only when final_flag_go is true (gateway agent's 2-D go) and --help lists it; until then args_nofinal (same h) are used."
+    },
+    "voxel_lock": "voxel.lock",
+    "rules_note": "gateway agent, 18:51: agents and smoke tests use --fidelity frame only; voxel checks one at a time (coarse h=0.5 locally, or remote via --write-job / voxel_check.py / --voxel-result)",
+    "agent_check_args": [],
+    "agent_check_wait_s": 90,
+    "agent_check_note": "2-D plane-stress FE check at the gateway's default 2-D h (about 20 s); one FIFO slot"
+  },
+  "published_data": {
+    "dirs": [],
+    "exclude_ext": [
+      ".py",
+      ".pyc"
+    ],
+    "label": "(none shipped)",
+    "note": "point dirs at your own read-only data"
+  },
+  "targets": {
+    "file": "../targets/targets.json",
+    "sealed_case_file": "../targets/sealed_case.json",
+    "placeholders": [
+      "lumbar_vertebra"
+    ],
+    "n_targets": 2,
+    "only": [
+      "lumbar_vertebra",
+      "femur_head"
+    ],
+    "use_2d_key": true,
+    "note_2d": "dim 2: the target is targets.json['2d'][site] (plane 1-3 reduction) plus the site's visible cases"
+  },
+  "genome": {
+    "p_nemotron": 0.5,
+    "packs": [
+      "bone_mechanics",
+      "lattice_homogenization",
+      "fracture_mechanics",
+      "print_physics",
+      "optimization_statistics",
+      "contrarian"
+    ],
+    "pack_draw": "without_replacement",
+    "tool_price_options": {
+      "web_search": [
+        500,
+        1000,
+        2000
+      ],
+      "web_fetch": [
+        250,
+        500,
+        1000
+      ],
+      "python": [
+        100,
+        250,
+        500
+      ],
+      "bash": [
+        0,
+        50
+      ],
+      "board_post": [
+        0,
+        50
+      ],
+      "gateway_frame": [
+        250,
+        500,
+        1000
+      ],
+      "gateway_planestress": [
+        20000,
+        25000,
+        30000
+      ],
+      "export_stl": [
+        0,
+        250
+      ],
+      "train_widths": [
+        2000,
+        5000,
+        10000
+      ],
+      "lean_gate": [
+        1000,
+        3000,
+        6000
+      ],
+      "cad_python": [
+        100,
+        250,
+        500
+      ],
+      "warp_gpu": [
+        250,
+        500,
+        1000
+      ],
+      "freecad": [
+        250,
+        500,
+        1000
+      ],
+      "preform": [
+        250,
+        500,
+        1000
+      ],
+      "remote_gpu": [
+        5000,
+        10000,
+        20000
+      ],
+      "openresearch": [
+        1000,
+        2000,
+        4000
+      ]
+    },
+    "credit_weight_options": {
+      "input": [
+        1.0
+      ],
+      "cache_creation": [
+        1.0
+      ],
+      "cache_read": [
+        0.0,
+        0.1
+      ],
+      "output": [
+        1.0,
+        2.0,
+        4.0
+      ]
+    },
+    "style_options": {
+      "curiosity": [
+        "exploit",
+        "explore"
+      ],
+      "communication": [
+        "terse",
+        "explanatory"
+      ],
+      "reasoning": [
+        "analytic",
+        "empirical"
+      ]
+    }
+  },
+  "single_gets_all_packs": true,
+  "token_estimate": {
+    "note": "Per-turn model used by --dry-run. Calibrated on the Oct 31 prediction run (13 Claude sessions: ~26k first-turn context, ~2.6k new context per turn, ~650 output tokens per turn incl. thinking). usd_per_mtok fitted to those sessions' total_cost_usd.",
+    "first_context": 26000,
+    "new_context_per_turn": 2600,
+    "output_per_turn": 650,
+    "tool_calls_per_turn": 0.8,
+    "gateway_share_of_tool_calls": 0.35,
+    "likely_fraction_of_quota": 0.6,
+    "usd_per_mtok": {
+      "input": 3.57,
+      "cache_creation": 7.14,
+      "cache_read": 0.357,
+      "output": 17.86
+    }
+  },
+  "tools": {
+    "registry": "tools.json",
+    "freecadcmd": "",
+    "remote_gpu": {
+      "cmd": "",
+      "note": "set to a command (e.g. a brev/ssh invocation) if the Brev A100 is set up tonight; empty = unavailable"
+    },
+    "timeout_s": 1800
+  },
+  "interventions": {
+    "per_target": true,
+    "remove": true,
+    "cap": true,
+    "directive_cap": 2,
+    "leader_ratio": 2.0,
+    "note": "config switch, OFF by default (user deciding)",
+    "enabled": false
+  },
+  "openresearch": {
+    "openalex_run_cap": 60,
+    "openalex_run_cap_with_key": 2000,
+    "note": "OpenAlex keyless budget is ~100 searches/day for ALL agents (760 of 1000 credits left at 18:30). Every arm run gets the same cap = run_cap // number of arm runs (min 1); past it the wrapper drops OpenAlex and searches alphaXiv/PubMed. OPENALEX_API_KEY in the environment at launch raises the run cap."
+  },
+  "one_batch_at_a_time": false,
+  "limit_retry_minutes": 15,
+  "max_limit_pauses": 30,
+  "total_credit_cap": 20120000,
+  "subscription_note": "Claude subscription with usage windows (no API key): one batch at a time, usage-window blocks pause and resume the same session (run_tracks.py pattern); total_credit_cap = sum of all quotas, checked by the launcher and before each intervention.",
+  "overflow_api": {
+    "enabled": false,
+    "key_file": "",
+    "spend_cap_usd": 180.0,
+    "note": "Subscription by default. On a usage-window block the blocked agent resumes on the SAME model with ANTHROPIC_API_KEY in the CHILD env only; per-turn billing and list-price cost logged; total API spend capped (then pause instead). Key never logged; redacted.",
+    "subscription_resets_at": "04:40",
+    "switch_note": "at the subscription reset (04:40 local EST) every session on the API key switches back at its next safe point (a turn boundary: right after a tool result came back), resuming the same session id on the same model without the key; new sessions start on the subscription; a later block applies the same overflow rule"
+  },
+  "goal": "Make implants as mechanically homogeneous with bone as possible without losing integrity.",
+  "notices": [],
+  "deliverables": {
+    "files": [
+      "implant.form",
+      "material_spec.json",
+      "report.md"
+    ],
+    "one_of": [
+      [
+        "implant.stl",
+        "implant.3mf"
+      ]
+    ],
+    "axes": "+Z cranial-caudal (superior-inferior); X, Y = bone axes 1, 2",
+    "note": "pre-registered: a run's submission needs implant.form, implant.stl or implant.3mf, material_spec.json and report.md at 07:00; a missing deliverable = no submission"
+  },
+  "budget": {
+    "run_credits": 2500000,
+    "single_quota": 2500000,
+    "agent_quota": 420000,
+    "compute_usd_per_run": 15.0,
+    "note": "per run 2.5M credits (single 2.5M; six agents 0.42M each) plus a Brev $ cap per run via bt_compute"
+  },
+  "affinity_axes": {
+    "knowledge": [
+      "bone biology",
+      "solid mechanics / FEA",
+      "materials chemistry",
+      "additive manufacturing",
+      "ML / surrogates",
+      "clinical / regulatory"
+    ],
+    "tools": [
+      "NVIDIA simulation",
+      "PreForm API",
+      "literature",
+      "geometry / CAD",
+      "data analysis"
+    ],
+    "communication": [
+      "broadcaster",
+      "listener",
+      "challenger",
+      "connector"
+    ],
+    "working_style": [
+      "explorer",
+      "exploiter",
+      "verifier",
+      "builder"
+    ]
+  },
+  "affinity_tool_map": {
+    "NVIDIA simulation": [
+      "compute",
+      "warp_gpu",
+      "score_frame",
+      "score_planestress",
+      "train_widths"
+    ],
+    "PreForm API": [
+      "preform_api",
+      "preform"
+    ],
+    "literature": [
+      "openresearch",
+      "web_search",
+      "web_fetch"
+    ],
+    "geometry / CAD": [
+      "cad_python",
+      "freecad",
+      "export_stl"
+    ],
+    "data analysis": [
+      "python",
+      "measured_data",
+      "bash"
+    ]
+  },
+  "fixed_tool_prices": {
+    "web_search": 500,
+    "web_fetch": 500,
+    "python": 100,
+    "bash": 0,
+    "board_post": 0,
+    "gateway_frame": 250,
+    "gateway_planestress": 20000,
+    "export_stl": 0,
+    "train_widths": 5000,
+    "lean_gate": 3000,
+    "cad_python": 100,
+    "warp_gpu": 250,
+    "freecad": 250,
+    "preform": 250,
+    "preform_api": 100,
+    "remote_gpu": 0,
+    "openresearch": 1000,
+    "compute": 0,
+    "precheck": 0
+  },
+  "credit_weights_fixed": {
+    "input": 1.0,
+    "cache_creation": 1.0,
+    "cache_read": 0.1,
+    "output": 1.0
+  },
+  "judge": {
+    "eval_spec": "../sim/EVAL_SPEC_v1.md",
+    "precheck": "../sim/judge/precheck.py",
+    "estimate_key": "H_avg",
+    "better": "lower",
+    "summary": "The judge embeds your implant in lumbar vertebral bone. Space inside the implant's outline is treated as filled with fused bone graft for the primary, long-term evaluation, and with soft early graft for a secondary one. The primary score is how much the implant changes the bone's strain-energy field (averaged over 0.8 mm), across the visible and the sealed load cases; lower is better. Gates: strength, connectivity, damage tolerance and size (a lumbar interbody envelope). The full rules are EVAL_SPEC_v1.md plus its addenda (1 and 2).",
+    "blocked": [
+      "sim/judge",
+      "sim/eval_",
+      "sim/tests",
+      "sim/probe",
+      "sim/test_designs",
+      "judge_private",
+      "precheck"
+    ],
+    "note": "EVAL_SPEC.md is being written by the judge agent; the brief links its public copy and carries summary (set at launch). better = direction of the primary estimate for the best_of_n pick (confirm with the judge).",
+    "precheck_args": [
+      "--folder",
+      "{dir}"
+    ],
+    "pass_key": "gates_pass",
+    "precheck_timeout_s": 900,
+    "selection_rule": "best_of_n, fixed by the coordinator before launch: at the deadline the harness runs the judge's pre-check (sim/judge/precheck.py: visible load cases only, coarse) on each agent's deliverables and picks the lowest H among those that pass the gates; if the pre-check is unavailable or all fail, a seeded random agent's submission",
+    "keys_note": "confirmed against sim/judge/precheck.py (00:40): --folder DIR; prints one JSON object (indented) with H and gates_pass",
+    "eval_addenda_glob": "EVAL_SPEC_v1_addendum*.md",
+    "estimate_key_note": "the run's config said H, but precheck.py prints H_avg; that mismatch was one of the pre-check bugs"
+  },
+  "compute": {
+    "script": "../compute/bt_compute.py",
+    "images": "../compute/images.md"
+  },
+  "preform": {
+    "server": "set by your PreForm adapter (see preform_tool.py)",
+    "exe": "../PreFormServer/PreFormServer/PreFormServer.exe",
+    "control_printer": "Form 4",
+    "control_resin": "Rigid 10K",
+    "layer_mm": 0.1,
+    "denied_path_parts": [
+      "print",
+      "device",
+      "discover",
+      "upload",
+      "remote"
+    ]
+  },
+  "control": {
+    "dim": 3,
+    "material": "rigid10k",
+    "target": "lumbar_vertebra",
+    "envelope_mm": [
+      40.0,
+      22.0,
+      12.0
+    ],
+    "rule_pitch_mm": 5.0,
+    "size_source": "standard lumbar cage size chosen by the coordinator: 40 mm anterior-posterior (X) x 22 mm lateral (Y) x 12 mm cranial-caudal (+Z); source: Wu 2022, LLIF cage dimensions (22 mm width, 11-13 mm height); inside the judge's envelope (EVAL_SPEC G4)"
+  },
+  "kb_snapshot_minutes": 10,
+  "metrics_dir": "metrics",
+  "admission": {
+    "max_sessions": 12,
+    "min_free_ram_gb": 3.5,
+    "session_ram_gb": 0.35,
+    "max_cpu_pct": 85,
+    "check_s": 30,
+    "note": "start a unit only if running+size <= max_sessions, free RAM >= min_free_ram_gb + extra per additional session of the unit (fills: session_ram_gb; groups: group_extra_session_ram_gb, 0.25 GB, so a group of 6 needs 4.25 GB free), 1-min CPU < max_cpu_pct; after any start the next check is 30 s later on a fresh RAM reading",
+    "group_extra_session_ram_gb": 0.25
+  },
+  "wall_cap_min": 90,
+  "last_start": "07:00",
+  "heavy_slots": 1,
+  "notices_note": "per session: at cap-30 and cap-10 minutes (identical text)",
+  "hard_deadline": "08:30",
+  "deadline_note": "coordinator 03:25: equal 90-minute wall cap for every session, last start 07:00, forced collection 08:30 local",
+  "times_note": "all times are local wall clock (EST after DST ended): last start 06:30, forced collection 08:30",
+  "heavy_min_free_ram_gb": 2.5,
+  "_template_note": "Copy to config.json. Values are the hackathon's unless noted; paths to files outside this repo will not resolve."
+}

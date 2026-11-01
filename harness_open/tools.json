@@ -1,0 +1,94 @@
+{
+  "note": "Open run: the same tool set for every agent and arm, at the same prices (config fixed_tool_prices). Each entry's status is checked at launch and printed in the brief. Wrapped tools run through tools/bt_tool.py, which charges the caller and logs every call; WebSearch/WebFetch are priced and logged by the meter hook.",
+  "provided": {
+    "preform_api": {
+      "family": "PreForm API",
+      "how": "bt_tool.py preform_api OP [--body body.json]  (OP: create_scene, import_model, get_scene, delete_scene, open_form, body_count, validate, auto_support, auto_layout, estimate_time, save_form, list_settings; see preform_tool.py for each body)",
+      "resource": "the PreForm adapter (preform_tool.py: a mock in this public copy, or your own authorized PreForm access via BT_PREFORM_ADAPTER): layout, validation, estimates, save .form; printing and device operations are refused; file paths must be in your folders"
+    },
+    "compute": {
+      "family": "NVIDIA simulation",
+      "how": "bt_tool.py compute -- <bt_compute args>",
+      "resource": "Brev GPUs through bonetwin/compute/bt_compute.py with a per-run $ cap. An L40S boots in about 90 s; docker and NGC public containers work; pip-installed Warp kernels and PhysicsNeMo imports failed in our test, so prefer NGC containers (recipes in <public>/compute_images.md)",
+      "script": "bt_compute.py"
+    },
+    "warp_gpu": {
+      "family": "NVIDIA simulation",
+      "how": "bt_tool.py warp_gpu SCRIPT.py [args]",
+      "resource": "NVIDIA Warp / warp.fem on the laptop GPU (venv Python)"
+    },
+    "score_frame": {
+      "family": "sim (optional)",
+      "how": "board.py score --design D [--fidelity frame]",
+      "resource": "bonetwin/sim/score_design.py frame lattice scorer (signed records)"
+    },
+    "score_planestress": {
+      "family": "sim (optional)",
+      "how": "board.py score --design D --fidelity planestress (one shared FIFO slot)",
+      "resource": "bonetwin/sim/score_design.py plane-stress / voxel checks (expensive)"
+    },
+    "train_widths": {
+      "family": "sim (optional)",
+      "how": "bt_tool.py train_widths -- <args>",
+      "resource": "bonetwin/sim/train_widths.py (gradient width training on Warp)",
+      "script": "train_widths.py"
+    },
+    "lean_gate": {
+      "family": "sim (optional)",
+      "how": "bt_tool.py lean_gate -- <score json files>",
+      "resource": "bonetwin/sim/lean_gate.py (Lean 4 + Mathlib admissibility proof)",
+      "script": "lean_gate.py"
+    },
+    "export_stl": {
+      "family": "geometry / CAD",
+      "how": "board.py stl --design D --out N.stl",
+      "resource": "bonetwin/sim/export_stl.py (strut-lattice design JSON to STL)"
+    },
+    "cad_python": {
+      "family": "geometry / CAD",
+      "how": "bt_tool.py cad_python SCRIPT.py [args]",
+      "resource": "venv Python with build123d, manifold3d, trimesh, gmsh, numpy, scipy"
+    },
+    "freecad": {
+      "family": "geometry / CAD",
+      "how": "bt_tool.py freecad SCRIPT.py",
+      "resource": "FreeCAD 1.1 headless (freecadcmd)"
+    },
+    "openresearch": {
+      "family": "literature",
+      "how": "bt_tool.py openresearch -- --query Q --max-papers N [--sources openalex,embedding,keyword,pubmed]",
+      "resource": "keyless literature search (alphaXiv, OpenAlex, PubMed); OpenAlex is capped per run (shared daily limit); a 429 is 'unavailable' and not charged",
+      "script": "openresearch_tool.py",
+      "local": true
+    },
+    "web_search": {
+      "family": "literature",
+      "how": "WebSearch (built in)",
+      "resource": "web search; every query logged and audited"
+    },
+    "web_fetch": {
+      "family": "literature",
+      "how": "WebFetch (built in)",
+      "resource": "web fetch; every URL logged and audited"
+    },
+    "measured_data": {
+      "family": "data analysis",
+      "how": "read files in <public>/data/",
+      "resource": "tonight's raw Breakerspace data and analysis outputs, read-only (imperfect, crosshead-only strain; see CHANGES.md)"
+    },
+    "board": {
+      "family": "board",
+      "how": "board.py read|post|wait|need|transfer|balance",
+      "resource": "shared board, collective and planner arms only"
+    }
+  },
+  "not_provided": {
+    "printing": "printers are on an offline network; .form files only",
+    "onshape_featurescript": "no Onshape API keys; Python CAD (build123d, manifold3d) covers it",
+    "openscad": "manifold3d is the same geometry kernel and is provided",
+    "simscale": "the SimScale API is enterprise-only",
+    "openresearch_engaging": "an external agent group, not reachable from this machine",
+    "direct_brev_or_wsl": "GPU compute only through bt_compute (per-run $ caps)",
+    "judge_precheck": "the judge's pre-check is harness-only: the harness runs it at the deadline to pick the best_of_n submission"
+  }
+}

@@ -1,0 +1,34 @@
+# secrets and local config
+.env
+*.key
+*_key.txt
+.gateway_key
+harness_open/config.json
+compute/caps.json
+sealed_private/
+targets/targets.json
+targets/sealed_case*
+sim/calibration.json
+
+# run data and logs
+harness_open/run*/
+harness_open/kb/
+harness_open/boards/
+harness_open/submissions/
+harness_open/transcripts/
+harness_open/agents/
+harness_open/sealed*/
+harness_open/smoke/
+harness_open/metrics/
+compute/compute_ledger.jsonl*
+compute/.quote_cache.json
+compute/reaper*
+!compute/reaper.py
+guard/guard_log.jsonl
+
+# never commit
+PreFormServer/
+print_package/
+__pycache__/
+*.pyc
+*.form

@@ -1,0 +1,2 @@
+# keep frozen files byte-identical: no line-ending conversion
+* -text

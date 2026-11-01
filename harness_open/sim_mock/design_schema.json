@@ -1,0 +1,61 @@
+{
+  "$comment": "MOCK schema; the harness uses bonetwin/sim/design_schema.json when it lands. dim 3: 20 x 20 x 20 mm block, nodes [x,y,z], struts [i,j,diameter]; dim 2: nodes [x,y], struts [i,j,width], thickness.",
+  "type": "object",
+  "required": [
+    "nodes",
+    "struts"
+  ],
+  "properties": {
+    "schema": {
+      "const": "bonetwin-design-v1"
+    },
+    "units": {
+      "const": "mm"
+    },
+    "material": {
+      "enum": [
+        "tough1500",
+        "rigid10k"
+      ]
+    },
+    "thickness": {
+      "type": "number",
+      "description": "extrusion depth, mm (2-D only)"
+    },
+    "box": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 3,
+      "description": "design domain, mm ([20,20,20] for dim 3)"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "minItems": 2,
+        "maxItems": 3
+      }
+    },
+    "struts": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 3,
+        "maxItems": 3,
+        "description": "[node_i, node_j, diameter (3-D) or in-plane width (2-D), mm]"
+      }
+    },
+    "dim": {
+      "enum": [
+        3,
+        2
+      ]
+    }
+  }
+}

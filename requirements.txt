@@ -1,0 +1,9 @@
+# Arena in mock mode needs only the Python standard library.
+# Judge, goal metric and figures:
+numpy
+scipy
+pyamg
+trimesh
+manifold3d
+pillow
+matplotlib
