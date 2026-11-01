@@ -1,0 +1,73 @@
+{
+  "material": "UHMWPE (ultra-high-molecular-weight polyethylene), implant grade (ASTM F648 / ISO 5834 resin family)",
+  "model": "isotropic linear elastic; homogeneous over the whole implant body",
+  "applies_to": "entire implant mesh 'implant' (single body)",
+  "properties": {
+    "E_MPa": {
+      "value": 800,
+      "kind": "tensile (Young's) modulus, 23 C",
+      "tolerance": "+-10%",
+      "source": {
+        "citation": "Xu M-M, Huang G-Y, Feng S-S, McShane GJ, Stronge WJ. Static and Dynamic Properties of Semi-Crystalline Polyethylene. Polymers 2016;8(4):77.",
+        "doi": "10.3390/polym8040077",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6432432",
+        "location": "Table 1 (UHMWPE material properties provided by the manufacturer)",
+        "quoted": "Elastic modulus 800 MPa"
+      },
+      "corroboration": [
+        {
+          "citation": "Xu et al. 2016, same article",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6432432",
+          "location": "Table 3 (quasi-static tensile tests)",
+          "quoted": "Young's modulus 912.5 +- 32.1 MPa (0 deg), 896.8 +- 25.2 MPa (45 deg), 814.3 +- 15.5 MPa (90 deg) at 0.001 s^-1"
+        },
+        {
+          "citation": "Osano K, Nagamine R, Todo M, Kawasaki M. The Effect of Malrotation of Tibial Component of Total Knee Arthroplasty on Tibial Insert during High Flexion Using a Finite Element Analysis. Scientific World Journal 2014:695028.",
+          "doi": "10.1155/2014/695028",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4033539",
+          "location": "Table 1 'Material constants of UHMWPE tibial insert'",
+          "quoted": "E 800 MPa"
+        }
+      ]
+    },
+    "nu": {
+      "value": 0.4,
+      "kind": "Poisson's ratio",
+      "tolerance": "+-10%",
+      "source": {
+        "citation": "Osano K, Nagamine R, Todo M, Kawasaki M. Scientific World Journal 2014:695028.",
+        "doi": "10.1155/2014/695028",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4033539",
+        "location": "Table 1 'Material constants of UHMWPE tibial insert'",
+        "quoted": "Density 940 kg/m3, E 800 MPa, Poisson's ratio 0.4, yield stress 16 MPa"
+      }
+    },
+    "strength_MPa": {
+      "value": 20,
+      "kind": "tensile yield stress (used for G1, as for PEEK/Ti in the judge table)",
+      "tolerance": "+-10%",
+      "source": {
+        "citation": "Xu et al. 2016, Polymers 8(4):77",
+        "doi": "10.3390/polym8040077",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6432432",
+        "location": "Table 1 (manufacturer data)",
+        "quoted": "Yield strength >= 20 MPa"
+      },
+      "corroboration": [
+        {
+          "citation": "Xu et al. 2016, same article",
+          "location": "Table 4 (compression, offset yield)",
+          "quoted": "sigma_0.2 = 20.37 +- 0.91 MPa at 0.001 s^-1"
+        },
+        {
+          "citation": "Wikipedia, Ultra-high-molecular-weight polyethylene",
+          "url": "https://en.wikipedia.org/wiki/Ultra-high-molecular-weight_polyethylene",
+          "quoted": "Typical tensile yield strength values range from 19.3 to 23 MPa (2,800 to 3,340 psi)."
+        }
+      ]
+    }
+  },
+  "anisotropy": "none declared (isotropic)",
+  "print_scene_material": "PreForm scene: Formlabs Form 4, Tough 1500 V2 (FLTO1502), 0.1 mm. The scene resin is a geometry carrier only; the declared implant material is UHMWPE (machined from ASTM F648 stock).",
+  "notes": "UHMWPE is not an SLA resin; the brief allows any material. E/E3_bone = 800/714 = 1.12; nu 0.40 vs bone nu31 0.343 (targets.json lumbar_vertebra)."
+}

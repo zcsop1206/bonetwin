@@ -1,0 +1,28 @@
+{
+  "material": "UHMWPE (ultra-high-molecular-weight polyethylene), Celanese GUR 4120 grade data used as the property basis (UHMWPE family; implant-grade GUR 1020 is the clinical analogue, ASTM F648 / ISO 5834)",
+  "regions": {"implant": "single body, whole mesh named 'implant' is UHMWPE"},
+  "properties": {
+    "E_MPa": {
+      "value": 720,
+      "isotropic": true,
+      "source": "Celanese GUR 4120 datasheet as listed by Suzhou Susheng Polymer (manufacturer: Celanese Corporation): 'Tensile Modulus ... 720 MPa, ISO 527-2/1A/1' (also 703 MPa, ASTM D638, 23 C). https://sushengpolymer.com/plasmain/hIL1Se_GUR-4120 (mechanical properties table)",
+      "tolerance": "+/-10%",
+      "secondary_source": "Goodfellow UHMWPE film group page lists tensile modulus 0.2-1.2 GPa (range contains 720 MPa): https://www.goodfellow.com/uk/uhmwpe-film-group"
+    },
+    "nu": {
+      "value": 0.46,
+      "source": "Goodfellow, UHMWPE film group, material properties table: Poisson's ratio 0.46. https://www.goodfellow.com/uk/uhmwpe-film-group",
+      "tolerance": "+/-10%"
+    },
+    "strength_MPa": {
+      "value": 17.0,
+      "kind": "tensile stress at yield (governing; G1 uses strength/2 = 8.5 MPa at 2x load)",
+      "source": "Celanese GUR 4120 datasheet as listed by Suzhou Susheng Polymer: 'Yield ... 17.0 MPa, ISO 527-2/1A/50' (ASTM D638 tensile strength at yield 21.4 MPa). https://sushengpolymer.com/plasmain/hIL1Se_GUR-4120",
+      "tolerance": "+/-10%",
+      "note": "The conservative ISO value (17.0) is declared, not the ASTM value (21.4)."
+    }
+  },
+  "anisotropy": "none declared (isotropic)",
+  "print_scene_material": "PreForm scene uses Formlabs Tough 1500 V2 (FLTO1502) on Form 4 as the printable prototype material; the intended implant material is UHMWPE. If any UHMWPE property is judged ungrounded, the scene resin (Tough 1500 V2) is the intended fallback.",
+  "evidence": "kb/sources.md"
+}

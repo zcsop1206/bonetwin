@@ -1,0 +1,13 @@
+raw_file,ingest_file,specimen_id,description,source,note,sha256
+tough_1_5mm-min_1.csv,D1_tension.csv,D1,"print1 Type IV, Tough 1500, Form 4","Alan's agent, Discord 21:04",,124be46387e8f1b37863170418d1d874dc0e164fe54b16670894277fb00d55c8
+tough_large_2.is_tens_Exports/tough_large_2_1.csv,D2_tension.csv,D2,"print1 Type IV, Tough 1500, Form 4","Alan, Discord 21:41 'dogbone 2'",,db0e715f4f14d5b70f1f32358986bb34547b89749f3f6f8eed20da8d763433a1
+tough_small.is_tens_Exports/tough_small_1.csv,DB-T-S1-FLAT-1_tension.csv,DB-T-S1-FLAT-1,"P2 Type V, Tough 1500, Form Studio 1",Adit's notes,,1b21c5501fbeb31b6b33c3389e9f99705967fe61bb9c608d1f7131bf7f392699
+tough_1_5mm-min_2.csv,DB-R-F4-FLAT-1_tension.csv,DB-R-F4-FLAT-1,"P1 Type V, Rigid 10K, Form 4",Adit confirmed,raw file name says tough; identity confirmed by Adit,69d19a4d1ee1dd0cdbe867b5e580a12d486e6ef56fadd4e60863959eb3c3f475
+lattice_x.is_comp_Exports/lattice_x_1.csv,CUBE-REF-1_compx.csv,CUBE-REF-1,"reference lattice cube, x",raw file name,"one cube tested on 3 axes; replicate number unrecorded, identical design",c7f5aa8700918d393b36b5a4da4bc842632df66e20d0dc7229b43b73e9faa7c5
+lattice_y.is_comp_Exports/lattice_y_1.csv,CUBE-REF-1_compy.csv,CUBE-REF-1,"reference lattice cube, y",raw file name,"one cube tested on 3 axes; replicate number unrecorded, identical design",38e4de70c8662432a67464360e207bd35dddce51bedbf6f367bb3a7645a20484
+lattice_z.is_comp_Exports/lattice_z_1.csv,CUBE-REF-1_compz.csv,CUBE-REF-1,"reference lattice cube, z",raw file name,"one cube tested on 3 axes; replicate number unrecorded, identical design",6e8ed1f851c96aad0692ecad2df39d90d63b87b58d7650c5a050a81554c52214
+aux_5mm.is_comp_Exports/aux_5mm_1.csv,aux_steps/AUX-1_step1.csv,AUX-1,"auxetic block, step 1",raw file name,"not given to ingest (no strain columns; nu by calipers, see extra_measured_manual.json)",78f5c3533038608034c61213eb19f03d5604188a524e3baaf8795a71f680095c
+aux_5mm.is_comp_Exports/aux_5mm_2.csv,aux_steps/AUX-1_step2.csv,AUX-1,"auxetic block, step 2",raw file name,not given to ingest (as above),3c8f273cf0f3f78ce3742500a69cbb55068061bf8ae2d6e12ad86ae9431d7527
+aux_5mm.is_comp_Exports/aux_5mm_3.csv,aux_steps/AUX-1_step3.csv,AUX-1,"auxetic block, step 3",raw file name,not given to ingest (as above),e5b45e6c20a1b8e1f054d66eb1383bc5cb748af8ba93f53a1538e46c26918047
+compression_1.is_comp_Exports/compression_1_1.csv,UNKNOWN-1_comp.csv,UNKNOWN-1,"compression, specimen unknown",none,excluded in dims.csv: id_uncertain,62cd41fd740a1ce605a4f1d65c6a6e33fe6d813b835e033ed79039631fbea958
+compression_1.is_comp_Exports/compression_1_2.csv,UNKNOWN-2_comp.csv,UNKNOWN-2,"compression, specimen unknown",none,excluded in dims.csv: id_uncertain,a8ba3813a27f3b21cc46bdd525b0aeb14ed65ca49d16a9130091718e3aa29277

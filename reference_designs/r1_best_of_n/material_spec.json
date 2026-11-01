@@ -1,0 +1,26 @@
+{
+  "material": "Tough 1500 V2 (Formlabs), printed and post-cured",
+  "reference_table_entry": "Tough 1500 V2 (printed, Form Studio 1)",
+  "printer": "Formlabs Form 4 (scene: machine_type FRML-4-0, material_code FLTO1502, 0.100 mm layers)",
+  "graded": false,
+  "single_material_everywhere": true,
+  "properties": {
+    "E_MPa": {
+      "value": 1136,
+      "tolerance": "+/-10%",
+      "source": "EVAL_SPEC_v1.md section 5 reference table, row 'Tough 1500 V2 (printed, Form Studio 1)': E = 1136 MPa from calibration.json / measured.json E_tough1500_flat_studio1; raw row: public/data/analysis/results_all.csv, specimen DB-T-S1-FLAT-1, value 1.1361 GPa (crosshead strain, flagged low)",
+      "note": "Deliberately the low, measured value used by the judge's primary scoring. Datasheet tensile modulus is 1460 MPa (Formlabs Tough 1500 Resin V2 product page, tech specs, https://formlabs.com/products/tough-1500-resin/), used by the judge only for the section-5a sensitivity run."
+    },
+    "poisson_ratio": {
+      "value": 0.35,
+      "source": "EVAL_SPEC_v1.md section 5 reference table, Tough 1500 V2 row: nu = 0.35 (marked assumed in that table; Formlabs does not publish a Poisson ratio)"
+    },
+    "tensile_strength_MPa": {
+      "value": 34.0,
+      "tolerance": "+/-10%",
+      "source": "Formlabs, Tough 1500 Resin V2 product page, tech specs (https://formlabs.com/products/tough-1500-resin/): ultimate tensile strength 34.0 MPa, post-cured with Form Cure V2 12 min at 70 C; same value in EVAL_SPEC_v1.md section 5 [S2]",
+      "used_for": "G1 strength gate (sigma_allow = 17 MPa at 2x load)"
+    }
+  },
+  "anisotropy": "none declared (isotropic)"
+}

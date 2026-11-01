@@ -1,0 +1,70 @@
+{
+  "material": "UHMWPE (ultra-high-molecular-weight polyethylene), general handbook values",
+  "model_regions": "single isotropic material for the whole implant body; no grading, no declared anisotropy",
+  "fabrication_note": "Not printable on Formlabs SLA printers. The .form is a geometry carrier only; its print setting is not the declared material.",
+  "properties": {
+    "E_MPa": {
+      "value": 700,
+      "source_range": "0.5-0.8 GPa",
+      "selection_note": "Value chosen from inside the published range because it is closest to bone E3 = 714 MPa. It is not the range midpoint (650 MPa).",
+      "source": "Hussain M, Naqvi RA, Abbas N, Khan SM, Nawaz S, Hussain A, Zahra N, Khalid MW. Ultra-High-Molecular-Weight-Polyethylene (UHMWPE) as a Promising Polymer Material for Biomedical Applications: A Concise Review. Polymers 2020;12(2):323.",
+      "doi": "10.3390/polym12020323",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7077409",
+      "locator": "Table 1, row 'Modulus of elasticity (GPa)', column UHMWPE",
+      "quote": "Modulus of elasticity (GPa): UHMWPE 0.5–0.8; HDPE 0.4–4.0"
+    },
+    "nu": {
+      "value": 0.46,
+      "source": "Hussain et al. 2020, as above",
+      "doi": "10.3390/polym12020323",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7077409",
+      "locator": "Table 1, row 'Poisson’s ratio', column UHMWPE",
+      "quote": "Poisson’s ratio: UHMWPE 0.46; HDPE 0.40"
+    },
+    "strength_MPa": {
+      "value": 21,
+      "type": "tensile yield, low end of published range",
+      "source_range": "21-28 MPa",
+      "source": "Hussain et al. 2020, as above",
+      "doi": "10.3390/polym12020323",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7077409",
+      "locator": "Table 1, row 'Tensile yield strength (MPa)', column UHMWPE",
+      "quote": "Tensile yield strength (MPa): UHMWPE 21–28; HDPE 26–33"
+    }
+  },
+  "table_context": {
+    "caption": "Average properties of Ultra-High Molecular Weight Polyethylene (UHMWPE) and high-density polyethylene (HDPE).",
+    "column_order": ["Property", "UHMWPE", "HDPE"],
+    "attribution": "The table is marked as reprinted from Kurtz, UHMWPE Biomaterials Handbook (the article's ref. 7). The handbook itself was not opened."
+  },
+  "conflicting_evidence": {
+    "summary": "Measured compressive properties are well below the declared E, and the measured nu is below the declared nu. An interbody implant is loaded mainly in compression, so the declared E may overstate its real stiffness.",
+    "source": "Abdelgaied A, Fisher J, Jennings L. The Compressive Mechanical Properties of UHMWPE for the Use in Computational Models of Total Knee Replacements. Orthopaedic Proceedings 2017;99-B(SUPP_3):1.",
+    "url": "https://boneandjoint.org.uk/Article/10.1302/1358-992X.99BSUPP_3.ISTA2016-001",
+    "values": {
+      "conventional": {"equivalent_E_MPa": "365 +/- 31", "nu": "0.33 +/- 0.04 (n=5)"},
+      "moderately_cross_linked": {"equivalent_E_MPa": "553 +/- 51", "nu": "0.32 +/- 0.08 (n=3)"}
+    },
+    "quotes": [
+      "The measured Poisson's ratio was 0.33±0.04 (mean ± 95% confidence interval (CI), n=5)",
+      "The corresponding values for the equivalent elastic modulus were 365±31 and 553±51"
+    ],
+    "why_not_declared": "It gives lower E, which raises H (see below), and no yield strength was seen in the text read. It is a conference abstract, and 'equivalent' modulus may not equal the small-strain E the judge uses."
+  },
+  "effect_on_H_from_replica": {
+    "file": "kb/judge/nusweep.json and kb/judge/hmap.csv",
+    "caveat": "Our replica, not the judge. Generic shapes at h=0.4 mm, no Richardson, not the final implant. H_vis is visible cases only.",
+    "H_vis_windowed_tube_fill_0.405": {"E700_nu0.35": 0.0064, "E700_nu0.46": 0.0181, "E600_nu0.46": 0.0311, "E500_nu0.46": 0.0671, "E800_nu0.46": 0.0366},
+    "reading": "nu = 0.46 about triples H at E 700 on the tube but H stays small. If the true compressive E were 500 MPa, H would be about 3.7x the declared-value figure. No run covered E 365 at this shape and nu."
+  },
+  "verification": {
+    "opened": "2026-11-01, PMC page, via WebFetch. Four Table 1 rows, caption and column order returned by a row-level query; values match an earlier separate query on the same page.",
+    "not_done": [
+      "Raw page text was not read directly: WebFetch passes pages through a summarising model and declined a full-table reproduction. A person or checker should confirm the rows on the page.",
+      "The publisher's copy (https://www.mdpi.com/2073-4360/12/2/323) returned HTTP 403 and was not compared.",
+      "Grade, sterilisation, cross-linking state and test temperature of the Table 1 values are not stated in the rows read. Values are not specific to any medical grade such as GUR 1020 or 1050.",
+      "Whether the judge's checker accepts a value picked from inside a range is untested. If it fails, spec section 5 replaces the property from the nearest reference entry; p2's fallback run covers E 1136."
+    ],
+    "search_snippet_only": "A peer-review comment (https://www.mdpi.com/2673-1592/6/3/36/review_report) questioned 0.46 as high for UHMWPE. Seen in a search result; page not opened."
+  }
+}

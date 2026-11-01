@@ -1,0 +1,10 @@
+specimen_id,test,width_mm,thickness_mm,length_mm,a_mm,a_post_mm,span_mm,video_gauge_axial_mm,video_gauge_trans_mm,failure_location,exclude_reason,notes
+D1,tension,,2.91,,,,,,,,,"Tough 1500 Form 4 Type IV. Thickness from Adit's caliper notes (written cm, read mm), assumed same as recorded Form 4 dog-bone. Width blank: 21.02 recorded is the TAB width, nominal gauge 6.0 used (ingest marks nominal_dims). Grip separation recorded 66 mm vs protocol 65; ingest uses fixed L0 65 (deviation noted, not changed). Failure location not recorded."
+D2,tension,,2.91,,,,,,,,,"Tough 1500 Form 4 Type IV. Thickness assumed same as recorded Form 4 dog-bone (2.91 mm). Width blank (tab 21.02), nominal 6.0 used (ingest marks nominal_dims). Grip separation recorded 66 mm vs L0 65 in ingest. Failure location not recorded."
+DB-T-S1-FLAT-1,tension,,3.6,,,,,,,,,"Tough 1500 Form Studio 1 Type V (P2). Thickness 3.6 from Adit's caliper notes (cm->mm). Width blank: 9.48 recorded is the TAB width, nominal gauge 3.18 used (ingest marks nominal_dims). Grip separation 25.4 mm (= ingest L0). Failure location not recorded."
+DB-R-F4-FLAT-1,tension,,3.4,,,,,,,,,"Rigid 10K Form 4 Type V (P1). Thickness 3.4 from Adit's caliper notes (cm->mm). Width blank: 9.50 recorded is the TAB width, nominal gauge 3.18 used (ingest marks nominal_dims). Grip separation 25.4 mm (= ingest L0). Failure location not recorded."
+CUBE-REF-1,compx,,,,,,,,,,,"One reference cube, replicate number unrecorded (identical design); edge not measured, nominal 20 mm."
+CUBE-REF-1,compy,,,,,,,,,,,"As compx."
+CUBE-REF-1,compz,,,,,,,,,,,"As compx."
+UNKNOWN-1,comp,,,,,,,,,,id_uncertain,"compression_1_1.csv: specimen unknown."
+UNKNOWN-2,comp,,,,,,,,,,id_uncertain,"compression_1_2.csv: specimen unknown."

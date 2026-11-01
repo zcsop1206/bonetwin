@@ -1,0 +1,21 @@
+{
+  "material": "Formlabs Rigid 10K (glass-filled photopolymer), printed on a Form 4 at 0.1 mm, post-cured",
+  "properties": {
+    "tensile_modulus_MPa": {
+      "value": 10000,
+      "source": "Formlabs Rigid 10K technical data sheet (post-cured)"
+    },
+    "ultimate_tensile_strength_MPa": {
+      "value": 65,
+      "source": "Formlabs Rigid 10K technical data sheet (post-cured)"
+    },
+    "calibrated_strut_modulus_MPa": {
+      "value": 8017.8,
+      "source": "bonetwin/sim/calibration.json (the gateway's calibration)"
+    },
+    "poisson_ratio": {
+      "value": 0.35,
+      "source": "bonetwin/sim/calibration.json"
+    }
+  }
+}

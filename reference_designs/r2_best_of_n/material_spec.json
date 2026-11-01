@@ -1,0 +1,27 @@
+{
+  "material": "Tough 1500 V2 (printed, Form Studio 1)",
+  "manufacturer": "Formlabs",
+  "printer": "Form Studio 1 (PreForm machine CLRK-1-2, material FLST1502, 0.100 mm)",
+  "isotropic": true,
+  "graded": false,
+  "properties": {
+    "E_MPa": {
+      "value": 1136,
+      "source": "EVAL_SPEC_v1.md section 5 reference table, row 'Tough 1500 V2 (printed, Form Studio 1)'; measured: public/data/analysis/results_all.csv, specimen DB-T-S1-FLAT-1, E_tough1500_flat_studio1 = 1.1361 GPa (crosshead strain, flagged low)",
+      "tolerance": "+/-10%",
+      "note": "Datasheet value 1460 MPa (https://formlabs.com/products/tough-1500-resin/, tech specs: Tensile Modulus 1460.0 MPa), used by the judge's section 5a sensitivity run"
+    },
+    "nu": {
+      "value": 0.35,
+      "source": "EVAL_SPEC_v1.md section 5 reference table, Tough 1500 V2 row (0.35, marked assumed there; Formlabs gives no Poisson ratio)",
+      "tolerance": "+/-10%"
+    },
+    "strength_MPa": {
+      "value": 34.0,
+      "kind": "ultimate tensile strength, post-cured (Form Cure V2, 12 min, 70 C)",
+      "source": "Formlabs Tough 1500 Resin V2 product page, tech specs: 'Ultimate Tensile Strength 34.0 MPa' (https://formlabs.com/products/tough-1500-resin/); EVAL_SPEC_v1.md [S2]",
+      "tolerance": "+/-10%"
+    }
+  },
+  "evidence": ["kb/source_tough1500_formlabs.md", "kb/source_measured_E.md"]
+}

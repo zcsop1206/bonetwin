@@ -1,0 +1,139 @@
+{
+ "schema": "bonetwin-calibration/1",
+ "source": "fit_calibration.py",
+ "note": "Es = modulus along layers (MPa). E across layers = orientation_factor * Es; strut at angle alpha to the build axis: 1/E = cos^2/E_across + sin^2/E_along. Width law: printed = nominal + a + b*nominal, along (in layer plane) / across (along build axis) blended by cos^2(alpha). joint_factor: flexible strut length = L / jf with rigid end zones.",
+ "joint_factor": 0.25005852151249375,
+ "materials": {
+  "rigid10k": {
+   "label": "Rigid 10K",
+   "Es_MPa": 8017.761763294376,
+   "nu": 0.35,
+   "orientation_factor": 1.0,
+   "allowable_MPa": 65.0,
+   "width_law": {
+    "along": {
+     "a": 0.0,
+     "b": 0.0
+    },
+    "across": {
+     "a": 0.0,
+     "b": 0.0
+    }
+   },
+   "printer_type": "Form 4"
+  },
+  "tough1500": {
+   "label": "Tough 1500 V2",
+   "Es_MPa": 1136.1082028002547,
+   "nu": 0.35,
+   "orientation_factor": 1.0,
+   "allowable_MPa": 33.0,
+   "width_law": {
+    "along": {
+     "a": 0.0,
+     "b": 0.0
+    },
+    "across": {
+     "a": 0.0,
+     "b": 0.0
+    }
+   },
+   "printer_type": "Form Studio 1"
+  }
+ },
+ "fitted_at": "2026-11-01T00:11:01-04:00",
+ "inputs": {
+  "measured": [
+   "<bonetwin>\\harness\\measured.json",
+   "b3ccedd6eb3f0b310fd4860f1a2201a0bf8fdae531c692c4d3d8ebbc7e537dba"
+  ],
+  "results": [
+   "<bonetwin>\\analysis\\results_all.csv",
+   "c5d3723c0aa9a07350a62c676e92ade7a3b2816912e40245b912b7de6a2209be"
+  ],
+  "fit_script_sha256": "37e3ae780bb89f42e2efba0e49a8f4b70d8e17467ca18806aeb06b719f61e97b"
+ },
+ "fitted": {
+  "Es_rigid10k_MPa": {
+   "value": 8017.761763294376,
+   "source": "measured.json E_rigid10k_flat_form4 (no exclusions possible)"
+  },
+  "Es_tough1500_MPa": {
+   "value": 1136.1082028002547,
+   "source": "measured.json E_tough1500_flat_studio1"
+  },
+  "orientation_factor_rigid10k": {
+   "value": 1.0,
+   "source": "default"
+  },
+  "width_law_rigid10k": {
+   "along": {
+    "a": 0.0,
+    "b": 0.0
+   },
+   "across": {
+    "a": 0.0,
+    "b": 0.0
+   }
+  },
+  "joint_factor": {
+   "value": 0.25005852151249375,
+   "source": "CUBE-REF axes ['x', 'y', 'z']",
+   "objective": 37.4415329564715,
+   "E_pred_MPa": [
+    48.22372848666571,
+    48.223728486665756,
+    98.41577242176683
+   ],
+   "E_meas_MPa": {
+    "x": 67.88231949714326,
+    "y": 7.236595878093363,
+    "z": 29.84607358425505
+   }
+  }
+ },
+ "fit_log": [
+  "fit_calibration.py sha256 37e3ae780bb89f42e2efba0e49a8f4b70d8e17467ca18806aeb06b719f61e97b",
+  "base: <bonetwin>\\sim\\calibration_defaults.json",
+  "measured.json: 16 entries at <bonetwin>\\harness\\measured.json (sha256 b3ccedd6eb3f)",
+  "results_all.csv: 19 rows, columns ['row_type', 'specimen_id', 'test', 'kind', 'group', 'value', 'unit', 'strain_source', 'n_pts', 'r2', 'peak_load_N', 'width_mm', 'thickness_mm', 'length_mm', 'a_mm', 'a_over_W', 'span_mm', 'P5_N', 'Pmax_over_P5', 'value_compliance_corrected', 'nu_1pct', 'nu_2pct', 'offset_mm', 'failure_location', 'excluded', 'flags', 'median', 'mean', 'sd', 'n'] (sha256 c5d3723c0aa9)",
+  "dims.csv: read <bonetwin>\\analysis\\ingest_input\\dims.csv (sha256 b3a468584dfa)",
+  "  moduli: CUBE-REF-1: no numeric modulus -> skipped",
+  "  moduli: CUBE-REF-1: no numeric modulus -> skipped",
+  "  moduli: CUBE-REF-1: no numeric modulus -> skipped",
+  "  moduli: D1: no numeric modulus -> skipped",
+  "  moduli: D2: no numeric modulus -> skipped",
+  "  moduli: DB-R-F4-FLAT-1: no numeric modulus -> skipped",
+  "  moduli: DB-T-S1-FLAT-1: no numeric modulus -> skipped",
+  "  moduli: None: no numeric modulus -> skipped",
+  "  moduli: None: no numeric modulus -> skipped",
+  "  moduli: None: no numeric modulus -> skipped",
+  "  moduli: None: no numeric modulus -> skipped",
+  "  moduli: None: no numeric modulus -> skipped",
+  "  moduli: None: no numeric modulus -> skipped",
+  "  moduli: None: no numeric modulus -> skipped",
+  "  moduli: None: no numeric modulus -> skipped",
+  "  moduli: None: no numeric modulus -> skipped",
+  "  moduli: None: no numeric modulus -> skipped",
+  "  moduli: None: no numeric modulus -> skipped",
+  "  moduli: None: no numeric modulus -> skipped",
+  "P1 Es rigid10k",
+  "Es_rigid10k_MPa: 11000.0 -> 8017.76   (measured.json E_rigid10k_flat_form4 (no exclusions possible))",
+  "P1 Es tough1500",
+  "Es_tough1500_MPa: 1460.0 -> 1136.11   (measured.json E_tough1500_flat_studio1)",
+  "P2 orientation factor rigid10k",
+  "orientation_factor_rigid10k: MISSING -> keep default 1.0",
+  "P2 orientation factor tough1500: no data tonight -> keep default",
+  "P3 width law rigid10k",
+  "  width law across: MISSING -> keep default {'a': 0.0, 'b': 0.0}",
+  "  width law along: MISSING -> keep default {'a': 0.0, 'b': 0.0}",
+  "P3 width law tough1500: no data tonight -> keep default",
+  "P4 joint factor from CUBE-REF",
+  "  cube_E_x: 67.88 MPa from measured.json",
+  "  cube_E_y: 7.24 MPa from measured.json",
+  "  cube_E_z: 29.85 MPa from measured.json",
+  "  frame prediction at jf=1: E = [192.85, 192.85, 393.57] MPa (x, y, z)",
+  "  jf = 0.2501  (objective 37.44); E_pred = [48.22, 48.22, 98.42] vs measured {'x': 67.88231949714326, 'y': 7.236595878093363, 'z': 29.84607358425505}",
+  "  WARNING: jf at its bound"
+ ]
+}

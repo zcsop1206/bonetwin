@@ -6,9 +6,7 @@
 harness_open/config.json
 compute/caps.json
 sealed_private/
-targets/targets.json
 targets/sealed_case*
-sim/calibration.json
 
 # run data and logs
 harness_open/run*/
@@ -32,3 +30,7 @@ print_package/
 __pycache__/
 *.pyc
 *.form
+!reference_designs/*/implant.form
+results/
+harness_open/voxel_queue.jsonl
+harness_open/voxel.lock*

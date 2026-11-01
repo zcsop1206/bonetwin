@@ -1,0 +1,46 @@
+{
+  "material": "Tough 1000 Resin (Formlabs)",
+  "applies_to": "entire implant (single body, single material; no grading)",
+  "isotropic": true,
+  "anisotropy": null,
+  "properties": {
+    "E_MPa": {
+      "value": 932.0,
+      "tolerance": "+/-10%",
+      "type": "tensile modulus, post-cured",
+      "source": "Formlabs Tough 1000 Resin product page, tech specs, 'Tensile Modulus 932.0 MPa' (https://formlabs.com/store/materials/tough-1000-resin/); footnote: parts printed on Form 4, 100 um, Tough 1000 Resin settings, post-cured with a Form Cure V2 for 12 minutes at 70 °C. TDS: https://formlabs.com/materials/data-sheets/?product=tough1000"
+    },
+    "nu": {
+      "value": 0.35,
+      "basis": "assumed; Formlabs publishes no Poisson's ratio for its Tough resins. This is the same assumption the judge makes for its Tough 1500 and Rigid 10K entries",
+      "source": "EVAL_SPEC_v1.md §5 reference table (Tough 1500 V2 and Rigid 10K rows: nu 0.35 assumed), applied to the sister resin Tough 1000"
+    },
+    "strength_MPa": {
+      "value": 26.3,
+      "type": "ultimate tensile strength, post-cured",
+      "tolerance": "+/-10%",
+      "source": "Formlabs Tough 1000 Resin product page, tech specs, 'Ultimate Tensile Strength 26.3 MPa' (https://formlabs.com/store/materials/tough-1000-resin/); same footnote (Form 4, 100 um, Form Cure V2 12 min at 70 °C)"
+    },
+    "elongation_at_break_pct": {
+      "value": 180.0,
+      "source": "Formlabs Tough 1000 Resin product page, tech specs, 'Elongation at Break 180.0 %'",
+      "note": "informational; a ductile resin supports damage tolerance (G3)"
+    },
+    "flexural_modulus_MPa": {
+      "value": 761.0,
+      "source": "Formlabs Tough 1000 Resin product page, tech specs, 'Flexural Modulus 761.0 MPa'",
+      "note": "informational only; not used by the judge"
+    }
+  },
+  "print_settings": {
+    "printer": "Form 4",
+    "layer_um": 100,
+    "post_cure": "Form Cure V2, 12 min, 70 °C (matches the datasheet footnote)"
+  },
+  "caveats": [
+    "These are datasheet values. Tonight's Breakerspace tests did not include Tough 1000. The crosshead-measured Tough 1500 modulus was 22% below its datasheet value (1136 vs 1460 MPa), so the as-printed Tough 1000 modulus may also come in lower.",
+    "Poisson's ratio is assumed, not measured."
+  ],
+  "evidence_kb": "kb/c4_sources/material_grounding.md (shared arm knowledge base); kb/c3_material_candidates.md",
+  "why_this_material": "It is the lowest-modulus grounded resin with adequate strength. Its E (932 MPa) sits between bone C11 (245) and C33 (796), about 1.17x bone C33; Tough 1500 is 1.4-1.8x and PEEK about 5x. Its strength/E ratio (2.8%) is about the same as Tough 1500's (3.0%), so the G1 margin does not change."
+}

@@ -1,0 +1,32 @@
+{
+  "material": "Tough 1500 V2 (printed, Form Studio 1)",
+  "material_family": "Formlabs Tough 1500 Resin V2 (photopolymer, SLA), material code FLTO1502",
+  "printer_in_scene": "Form 4 (FORM-4-0), 0.1 mm layers, FLTO1502",
+  "graded": false,
+  "regions": [{"body": "implant", "material": "Tough 1500 V2 (printed, Form Studio 1)"}],
+  "properties": {
+    "E_MPa": {
+      "value": 1136,
+      "isotropic": true,
+      "source": "Tonight's Breakerspace tension test, specimen DB-T-S1-FLAT-1 (Type V flat dog-bone, Tough 1500, Form Studio 1): public/data/analysis/results_all.csv, row 'specimen,DB-T-S1-FLAT-1', value 1.1361 GPa, crosshead strain; same value as the EVAL_SPEC_v1 §5 reference table entry 'Tough 1500 V2 (printed, Form Studio 1)', E 1136 MPa.",
+      "tolerance": "+/-10%",
+      "caveat": "Crosshead-only strain includes machine compliance, so this underestimates E. The datasheet value is 1460 MPa (Formlabs Tough 1500 Resin V2 product page, tech specs, https://formlabs.com/products/tough-1500-resin/: 'Tensile Modulus 1460.0 MPa'); EVAL_SPEC_v1 §5a scores this case as the sensitivity run."
+    },
+    "nu": {
+      "value": 0.35,
+      "source": "EVAL_SPEC_v1 §5 reference table, Tough 1500 V2 row: nu 0.35 (marked *assumed* there). The Formlabs page lists no Poisson's ratio. Assumed, typical for glassy/tough polymers.",
+      "tolerance": "assumed"
+    },
+    "strength_MPa": {
+      "value": 34.0,
+      "kind": "ultimate tensile strength, post-cured",
+      "source": "Formlabs, Tough 1500 Resin V2 product page, tech specs (https://formlabs.com/products/tough-1500-resin/): 'Ultimate Tensile Strength 34.0 MPa' (Form 4, 100 um, Form Cure V2 12 min at 70 C). Same as EVAL_SPEC_v1 §5 [S2].",
+      "tolerance": "+/-10%"
+    },
+    "elongation_at_break_pct": {
+      "value": 155,
+      "source": "Formlabs Tough 1500 Resin V2 product page, tech specs: 'Elongation at Break 155.0 %'. Not used by the judge; supports the damage-tolerance argument."
+    }
+  },
+  "anisotropy": "none declared (isotropic voxels, per EVAL_SPEC_v1 §5)"
+}

@@ -1,0 +1,36 @@
+{
+  "note": "Manual entry, NOT produced by ingest.py and not scored by score.py. AUX-1 Poisson ratio by calipers: deviation from PROTOCOL.md (video/dot strain), approved by the user. Values are Alan's team's report, treated as data.",
+  "source": {
+    "url": "https://alanchen.cc/s/scienceclaw-run2-breakerspace-results-47uovlxjp6mj2i5vk5qi/",
+    "discord": "Alan's team, Discord 22:33-22:38 Oct 31 2026",
+    "fetched": "2026-11-01 ~00:10 EDT; numbers below taken from the page table"
+  },
+  "AUX-1": {
+    "method": "calipers: width between the two outer vertical ribs at rows 5, 20, 35 mm above the bottom plate; axial strain = crosshead travel / full height",
+    "height_mm": 50.45,
+    "steps": "0.5 mm each at 1 mm/min",
+    "widths_before_loading_mm": {"row35": 44.13, "row20": 44.07, "row5": 44.142},
+    "axial_strain_pct": [0.99, 1.98, 2.97],
+    "nu_by_row": {
+      "row35": [-1.30, -1.01, -0.83],
+      "row20": [-0.57, -0.89, -0.77],
+      "row5": [0.00, -0.01, 0.06]
+    },
+    "nu_central_rows_mean": {"0.99pct": -0.94, "1.98pct": -0.95, "2.97pct": -0.80},
+    "nu_linear_fit_three_steps": -0.85,
+    "caliper_uncertainty": "+-0.05-0.1 mm, i.e. +-0.2 in nu at 1 %, +-0.1 at 2 % (Alan's estimate)",
+    "force_at_0p5mm_N": 33.4
+  },
+  "frozen_predictions": {
+    "ours": {
+      "nu": -0.80,
+      "file": "bonetwin/cell/aux1_prediction/aux1_planestress.json (sha256 db0044fa...)",
+      "derivation": "file stores the dot displacement ratio r = dRL/dTB = -1.386 at 1 % nominal strain (its key 'nu_app_center' = -r is a displacement ratio, not nu); nu = r * L_TB/L_LR = -1.386 * 25/43.30 = -0.800 (REF dots in aux1.py: T-B 25 mm, L-R 43.30 mm)"
+    },
+    "alan": {"nu": -0.66, "pm": 0.05, "rows_predicted": {"row35": -0.65, "row20": -0.67, "row5": -0.32}}
+  },
+  "comparison_abs_error": {
+    "ours_-0.80": {"1pct_central": 0.14, "2pct_central": 0.15, "3pct_central": 0.00, "fit": 0.05},
+    "alan_-0.66": {"1pct_central": 0.28, "2pct_central": 0.29, "3pct_central": 0.14, "fit": 0.19}
+  }
+}

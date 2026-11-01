@@ -1,8 +1,10 @@
 # bonetwin
 
-Reusable tools from one overnight experiment at the ScienceClaw hackathon (Nov 2026). Groups of Claude Code agents, arranged in different ways, tried to design a spinal implant that is mechanically like bone, and a frozen simulation judged what they handed in. This repo holds the tools only: no run data, no designs and no results.
+Reusable tools from one overnight experiment at the ScienceClaw hackathon (Nov 2026). Groups of Claude Code agents, arranged in different ways, tried to design a spinal implant that is mechanically like bone, and a frozen simulation judged what they handed in. This repo holds the tools, the challenge brief, the Breakerspace test data behind the material calibration, round 1's submitted designs as references, and a provisional analysis. It holds no run boards, knowledge bases or transcripts.
 
-This is unpolished hackathon code. It is not production ready and is not a medical or clinical tool. Licence: none chosen yet, so no one has permission to reuse this until one is added.
+This is unpolished hackathon code. It is not production ready and is not a medical or clinical tool. Licence: MIT, copyright 2026 Adit Bhargava and Alan Chen (see `LICENSE`).
+
+**Run your own system on the same problem:** [`CHALLENGE.md`](CHALLENGE.md) is the self-contained brief and scoring; [`docs/BRING_YOUR_OWN_SYSTEM.md`](docs/BRING_YOUR_OWN_SYSTEM.md) shows how to score your deliverables and measure your system's centralization the same way as ours.
 
 Built by Adit with teammate Alan. The shared board (`harness_open/board.py`) descends from Alan's earlier agent harness, and the spec cites his print and video tracking.
 
@@ -15,6 +17,11 @@ Built by Adit with teammate Alan. The shared board (`harness_open/board.py`) des
 | `guard/` | **Evaluator guard.** A Claude Code PreToolUse hook that stops the evaluating session from reading arm internals before an unlock time, writing them at all, or touching frozen files. Deterministic regex rules, fail-closed. See `guard/README.md`. |
 | `sim/judge/` | **Judge.** Voxel finite elements of an implant embedded in orthotropic bone: a strain-energy mismatch score at two resolutions, a Richardson band where overlapping bands tie, strength and connectivity gates, and ranking. Specs are `sim/EVAL_SPEC_v1.md` and addenda 1 to 4. |
 | `sim/goal_metric/` | A second, exploratory metric: the implant region's stiffness against bone's, empty and fused. |
+| `CHALLENGE.md`, `docs/BRING_YOUR_OWN_SYSTEM.md`, `tools/score_local.py` | The brief for any agent system, the integration guide, and a wrapper that runs the frozen goal metric without the sealed load case. |
+| `data/` | Breakerspace test results, specimen map and machine CSV exports (`data/README.md` lists what is still held back). |
+| `reference_designs/` | Round 1 deliverables (.form, material spec, report). They target the old metric. |
+| `round2/` | The round 2 brief (redacted) and its change log. |
+| `analysis_why/WHY.md`, `analysis_process/*.md`, `citations/` | Provisional analysis of round 1, process findings, and the citation list. |
 | `figures/scripts/`, `analysis_process/scripts/` | Plotting and process-analysis scripts. They expect this run's data, which is not here, and hard-code some of its labels and checks. Read them as examples. |
 
 `FROZEN_HASHES.md` lists the frozen files and their original hashes. Three were edited for this public copy, to remove a personal path and PreForm API detail: `docs/FROZEN_CHANGES.md` gives each one's original and new hash, and `ISSUES/fix-hashes.md` describes the consequence.
@@ -40,7 +47,7 @@ python smoke_test.py --root smoke/try2 --timeout 600
 
 The dry run prints the schedule, budgets and brief check. The smoke test runs 19 fake sessions plus the control under the real scheduler, then checks collection, the meter, refusals and metrics. Keep roots under `smoke/`. On a small machine, lower `admission.max_sessions` in `config.json`. Optional tools (`cad_python`, `warp_gpu`, FreeCAD) report themselves unavailable when their modules are missing. From a fresh clone it passes 35 of 36 checks; the one failure is the known best-of-N pre-check bug under "Honest limits", where the pick falls back to a seeded random choice.
 
-Evaluate a mesh with the judge (CPU only). You must supply `targets/targets.json`, `targets/sealed_case.json` and `sim/calibration.json`, which are not shipped; `targets/SOURCES.md` and `sim/EVAL_SPEC_v1.md` describe them.
+Evaluate a mesh with the judge (CPU only). You must supply `targets/targets.json` and `targets/sealed_case.json`, which are not shipped (`sim/calibration.json` now is; `tools/score_local.py` runs the goal metric without the sealed case); `targets/SOURCES.md` and `sim/EVAL_SPEC_v1.md` describe them.
 
 ```
 cd sim/judge
@@ -78,4 +85,4 @@ Compute: copy `compute/caps.template.json` to `compute/caps.json`, install the B
 
 ## Left out on purpose
 
-Run data, boards, knowledge bases, transcripts, submissions, sealed cases, keys, ledgers, logs, print packages and PreForm binaries. `targets/targets.json` is also left out, and so is the target generator, which holds the sealed case. `compute/MEMORY_GOVERNOR_RULE.md` is omitted because that rule was written but never enforced. These scripts were dropped because they embed agents' board or knowledge-base content or hard-coded results: `figures/scripts/` `sole_writer.py`, `ev_preform.py`, `ev_warp.py`, `contest.py`, `ev_specimens.py`, `ev_triangulation.py`; `analysis_process/scripts/` `apply_edits.py`, `verify_highlights.py`.
+Run data, boards, knowledge bases, transcripts, submission STLs and selection files, sealed cases, keys, ledgers, logs, print packages and PreForm binaries. `targets/targets.json` is also left out, and so is the target generator, which holds the sealed case. `compute/MEMORY_GOVERNOR_RULE.md` is omitted because that rule was written but never enforced. These scripts were dropped because they embed agents' board or knowledge-base content or hard-coded results: `figures/scripts/` `sole_writer.py`, `ev_preform.py`, `ev_warp.py`, `contest.py`, `ev_specimens.py`, `ev_triangulation.py`; `analysis_process/scripts/` `apply_edits.py`, `verify_highlights.py`.
