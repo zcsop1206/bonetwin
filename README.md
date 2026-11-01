@@ -4,6 +4,8 @@ Reusable tools from one overnight experiment at the ScienceClaw hackathon (Nov 2
 
 This is unpolished hackathon code. It is not production ready and is not a medical or clinical tool. Licence: MIT, copyright 2026 Adit Bhargava and Alan Chen (see `LICENSE`).
 
+**Results:** [`RESULTS.md`](RESULTS.md) has the final scores of every design, and [`RUN_LOG.md`](RUN_LOG.md) the full incident log of the run.
+
 **Run your own system on the same problem:** [`CHALLENGE.md`](CHALLENGE.md) is the self-contained brief and scoring; [`docs/BRING_YOUR_OWN_SYSTEM.md`](docs/BRING_YOUR_OWN_SYSTEM.md) shows how to score your deliverables and measure your system's centralization the same way as ours.
 
 Built by Adit with teammate Alan. The shared board (`harness_open/board.py`) descends from Alan's earlier agent harness, and the spec cites his print and video tracking.
@@ -19,7 +21,7 @@ Built by Adit with teammate Alan. The shared board (`harness_open/board.py`) des
 | `sim/goal_metric/` | A second, exploratory metric: the implant region's stiffness against bone's, empty and fused. |
 | `CHALLENGE.md`, `docs/BRING_YOUR_OWN_SYSTEM.md`, `tools/score_local.py` | The brief for any agent system, the integration guide, and a wrapper that runs the frozen goal metric without the sealed load case. |
 | `data/` | Breakerspace test results, specimen map and machine CSV exports (`data/README.md` lists what is still held back). |
-| `reference_designs/` | Round 1 deliverables (.form, material spec, report). They target the old metric. |
+| `reference_designs/` | Round 1 deliverables (.form, material spec, report; they target the old metric) and the round 2 collective's (`r2_collective_round2/`, with STL). |
 | `round2/` | The round 2 brief (redacted) and its change log. |
 | `analysis_why/WHY.md`, `analysis_process/*.md`, `citations/` | Provisional analysis of round 1, process findings, and the citation list. |
 | `figures/scripts/`, `analysis_process/scripts/` | Plotting and process-analysis scripts. They expect this run's data, which is not here, and hard-code some of its labels and checks. Read them as examples. |

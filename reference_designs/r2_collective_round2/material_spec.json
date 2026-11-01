@@ -1,0 +1,43 @@
+{
+  "material": "Tough 1500 Resin V2 (Formlabs), printed and post-cured",
+  "material_name_reference_table": "Tough 1500 V2 (printed, Form Studio 1)",
+  "print_material_in_scene": "Tough 1500 V2",
+  "graded": false,
+  "anisotropy": "none declared (isotropic solid; all stiffness anisotropy comes from the lattice geometry)",
+  "properties": {
+    "E_MPa": {
+      "value": 1136,
+      "basis": "measured tensile modulus, printed Type V flat dog-bone DB-T-S1-FLAT-1, Tough 1500 on Form Studio 1, crosshead strain",
+      "source": "Breakerspace test data 2026-11-01, public/data/analysis/results_all.csv row specimen DB-T-S1-FLAT-1 (E_tough1500_flat_studio1 = 1.1361 GPa, r2 0.9997); same value as EVAL_SPEC_v1.md section 5 reference table (calibration.json E_tough1500_flat_studio1)",
+      "tolerance": "+/-10%",
+      "caveats": "crosshead-only strain includes machine compliance, so E is underestimated. The Form 4 Type IV dog-bones D1/D2 gave 1.438 and 1.283 GPa (mean 1.360). The datasheet value is 1460 MPa (see E_datasheet_MPa)."
+    },
+    "E_datasheet_MPa": {
+      "value": 1460,
+      "basis": "tensile modulus, post-cured Form Cure V2 12 min at 70 C (sensitivity only; not the value declared for scoring)",
+      "source": "Formlabs Tough 1500 Resin V2 product page tech specs, https://formlabs.com/store/materials/tough-1500-resin/ ('Tensile modulus 1460 MPa'); Formlabs Tough 1500 Resin V2 TDS Rev 05 (Oct 2025), https://formlabs-media.formlabs.com/datasheets/25011041-TDS-ENUS-0.pdf"
+    },
+    "nu": {
+      "value": 0.35,
+      "basis": "ASSUMED. Formlabs publishes no Poisson's ratio for Tough 1500 (checked product page; web search found no measured value). 0.35 is the value the judge's reference table assigns to this resin.",
+      "source": "EVAL_SPEC_v1.md section 5 reference table, row 'Tough 1500 V2 (printed, Form Studio 1)', nu 0.35 (assumed)"
+    },
+    "strength_MPa": {
+      "value": 34.0,
+      "basis": "ultimate tensile strength, post-cured (Form Cure V2, 12 min, 70 C); used for G1 / integrity rule allowable = strength/2 = 17 MPa",
+      "source": "Formlabs Tough 1500 Resin V2 product page tech specs, https://formlabs.com/store/materials/tough-1500-resin/ ('Ultimate tensile strength 34.0 MPa', mechanical table '34 MPa | 4930 psi', footnote 'post-cured with a Form Cure V2 for 12 minutes at 70 C'); EVAL_SPEC_v1.md section 5 [S2]",
+      "tolerance": "+/-10%"
+    },
+    "elongation_at_break_pct": {
+      "value": 155,
+      "source": "Formlabs Tough 1500 Resin V2 product page tech specs ('Elongation at break 155.0 %')"
+    },
+    "flexural_modulus_MPa": {
+      "value": 1370,
+      "source": "Formlabs Tough 1500 Resin V2 product page tech specs ('Flexural modulus 1370.0 MPa')"
+    }
+  },
+  "post_processing": "Formlabs defaults for Tough 1500 V2: IPA wash, Form Cure V2 12 min at 70 C",
+  "biocompatibility_note": "Tough 1500 has ISO 10993-1 skin-contact evaluation only; it is NOT an implant-grade material. The print is a mechanical demonstrator.",
+  "why_this_material": "Under the judge's rules a non-reference material is replaced by the nearest reference entry in log-E; Tough 1500 (1136 MPa) is the softest grounded entry, closest to lumbar trabecular bone (E3 714 MPa), so it needs the highest solid fraction for a bone-matching lattice (better strength margin, smaller fused-state mismatch). Rigid 10K (8018 MPa) solid is 2.4-4.0 log-units stiffer than bone in its generalized eigenvalues vs 0.46-2.07 for Tough 1500."
+}
